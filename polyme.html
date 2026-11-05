@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 PHÒNG THÍ NGHIỆM HÓA HỌC: TRẮC NGHIỆM POLYMER</title>
+    <style>
+        :root {
+            --lab-dark: #1c2833; --chem-green: #16a085; --beaker-blue: #2980b9;
+            --warning-red: #c0392b; --neon-green: #2ecc71; --bg-light: #f8f9f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--lab-dark); padding-bottom: 40px; }
+        header {
+            background-color: var(--lab-dark); color: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 4px solid var(--chem-green); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 1.1rem; font-family: 'Courier New', Courier, monospace; color: var(--neon-green); }
+        #timer { font-size: 1.1rem; font-family: 'Courier New', Courier, monospace; color: #f1c40f; font-weight: bold; }
+        .container { max-width: 700px; margin: 30px auto; padding: 0 15px; }
+        #formula-decoration { text-align: center; font-style: italic; font-weight: bold; color: var(--beaker-blue); margin-bottom: 15px; font-size: 1rem; }
+        .quiz-card { background: white; border: 2px solid var(--chem-green); border-radius: 8px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .question-title { font-size: 1.15rem; font-weight: bold; margin-bottom: 20px; color: var(--lab-dark); line-height: 1.5; }
+        .options-list { list-style: none; }
+        .option-item { margin-bottom: 12px; }
+        .option-item label { display: block; padding: 14px 18px; background-color: #f2f4f4; border: 1px solid #d5dbdb; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s ease; }
+        .option-item input[type="radio"] { display: none; }
+        .option-item input[type="radio"]:checked + label { background-color: #e8f8f5; border-color: var(--chem-green); color: var(--chem-green); font-weight: bold; box-shadow: 0 2px 8px rgba(22, 160, 133, 0.15); }
+        .option-item label:hover { background-color: #eaeded; }
+        .progress-container { background-color: #e5e8e8; border-radius: 10px; height: 12px; margin-top: 25px; overflow: hidden; border: 1px solid #bdc3c7; }
+        .progress-bar { height: 100%; background-color: var(--chem-green); width: 0%; transition: width 0.3s ease; }
+        .btn-panel { text-align: center; margin-top: 25px; }
+        .btn-next { background-color: var(--beaker-blue); color: white; border: none; padding: 12px 30px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.2s; }
+        .btn-next:hover { background-color: #21618c; }
+        .report-header { background-color: var(--lab-dark); color: white; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; border-bottom: 3px solid var(--chem-green); }
+        .report-header h2 { font-size: 1.2rem; font-family: 'Courier New', Courier, monospace; margin-bottom: 8px; }
+        .purity-score { font-size: 1.1rem; font-weight: bold; }
+        .result-box { background: white; border: 2px solid #bdc3c7; border-top: none; border-radius: 0 0 8px 8px; padding: 15px; }
+        .report-item { border: 2px solid #bdc3c7; border-radius: 6px; padding: 15px; margin-bottom: 15px; background: #fff; }
+        .report-item.correct { border-color: var(--chem-green); }
+        .report-item.incorrect { border-color: var(--warning-red); }
+        .report-status { font-weight: bold; font-family: 'Courier New', Courier, monospace; margin-bottom: 5px; font-size: 0.95rem; }
+        .report-item.correct .report-status { color: var(--chem-green); }
+        .report-item.incorrect .report-status { color: var(--warning-red); }
+        .report-item p { margin-bottom: 5px; font-size: 0.95rem; }
+        .explain-txt { font-style: italic; color: #555; background: #f9f9f9; padding: 8px; border-left: 3px solid #bdc3c7; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔬 [POLYMER CHEMISTRY LAB] — SYSTEM ONLINE</h1>
+        <div id="timer">⏱️ PHẢN ỨNG: 30s</div>
+    </header>
+    <div class="container" id="quiz-container">
+        <div id="formula-decoration">Target Chain: Loading...</div>
+        <div class="quiz-card">
+            <div class="question-title" id="question-txt">Đang tải câu hỏi...</div>
+            <ul class="options-list" id="options-panel"></ul>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <div class="btn-panel">
+            <button class="btn-next" id="btn-next" onclick="nextQuestion()">🧪 Bơm Xúc Tác (Câu Tiếp)</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
